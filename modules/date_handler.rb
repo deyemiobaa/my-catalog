@@ -1,7 +1,7 @@
 require 'date'
 
 module DateHandler
-  def from_string(date)
+  def self.from_string(date)
     Date.parse(date)
   end
 end

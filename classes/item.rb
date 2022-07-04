@@ -1,16 +1,16 @@
 require_relative '../modules/date_handler'
 
 class Item
-  attr_accessor :publish_date, :source, :author, :genre, :label
+  attr_accessor :publish_date, :source, :author, :genre, :label, :archived
 
   def initialize(publish_date)
     @id = Random.rand(1..100)
     @publish_date = DateHandler.from_string(publish_date)
     @archived = false
-    @label = null
-    @genre = null
-    @author = null
-    @source = null
+    @label = nil
+    @genre = nil
+    @author = nil
+    @source = nil
   end
 
   def move_to_archive
