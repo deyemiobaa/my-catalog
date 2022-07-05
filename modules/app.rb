@@ -1,12 +1,12 @@
 class App
-  attr_accessor :books, :labels, :musics
+  attr_accessor :books, :labels, :musics, :games, :authors
 
   def initialize
     @books = []
     @labels = []
     @musics = []
     @games = []
-    @author = []
+    @authors = []
   end
 
   def add_book(book)
@@ -25,7 +25,7 @@ class App
     @games << game unless @games.include?(game)
   end
 
-  def add_author
+  def add_author(author)
     @authors << author unless @authors.include?(author)
   end
 end

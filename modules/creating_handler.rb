@@ -68,8 +68,8 @@ module CreatingHandler
     last_name = gets.chomp
     author = Author.new(first_name, last_name)
     @app.add_author(author)
-    p 'Author creates successfully'
+    p 'Author created successfully'
   end
 end
 
-CreatingHandler.create_author
+CreatingHandler.create_game
