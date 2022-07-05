@@ -1,2 +1,6 @@
 data/books.json
-data/label.json
+data/labels.json
+data/authors.json
+data/games.json
+data/music.json
+data/genres.json
