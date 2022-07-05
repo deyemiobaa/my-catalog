@@ -14,7 +14,6 @@ describe Game do
     expect(@game).to be_instance_of Game
   end
 
-  
   it 'can be archived if last played time old enough' do
     expect(@game.can_be_archived?).to eq true
   end
