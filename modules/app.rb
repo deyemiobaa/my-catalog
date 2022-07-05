@@ -5,6 +5,8 @@ class App
     @books = []
     @labels = []
     @musics = []
+    @games = []
+    @author = []
   end
 
   def add_book(book)
@@ -17,5 +19,13 @@ class App
 
   def add_music(music)
     @musics << music unless @musics.include?(music)
+  end
+
+  def add_game(game)
+    @games << game unless @games.include?(game)
+  end
+
+  def add_author
+    @authors << author unless @authors.include?(author)
   end
 end
