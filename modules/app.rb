@@ -1,5 +1,5 @@
 class App
-  attr_reader :books, :labels
+  attr_accessor :books, :labels, :musics
 
   def initialize
     @books = []
