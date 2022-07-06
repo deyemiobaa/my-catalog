@@ -1,5 +1,45 @@
+require 'json'
+
 module StorageData
-  def save_games(games)
+  def self.create_file
+    filename = %w[./data/games.json ./data/authors.json ./data/books.json 
+      ./data/labels.json ./data/genres.json ./data/musics.json]
+    filename.each { |file| File.new(file, 'w+') unless File.exist?(file) }
+  end
+
+  def self.save_data(app)
+    create_file
+    save_books(app)
+    save_labels(app)
+  end
+
+  def self.save_books(app)
+    books_data = app.books.map do |book|
+      {
+        publisher: book.publisher,
+        cover_state: book.cover_state,
+        publish_date: book.publish_date,
+        label: book.label.to_json,
+        genre: book.genre.to_json,
+        author: book.author.to_json,
+      }
+    end
+    json_data = JSON.generate(rentals_data)
+    File.write('./data/books.json', json_data)
+  end
+
+  def self.save_labels(app)
+    labels_data = app.labels.map do |label|
+      {
+        title: label.title,
+        color: label.color
+      }
+    end
+    json_data = JSON.generate(labels_data)
+    File.write('./data/labels.json', json_data)
+  end
+
+  def self.save_games(games)
     saved_games = []
     games.each do |game|
       saved_games.push({
@@ -11,7 +51,7 @@ module StorageData
     File.write('./data/books.json', JSON.generate(saved_games).to_s)
   end
 
-  def save_authors(authors)
+  def self.save_authors(authors)
     saved_authors = []
     authors.each do |author|
       saved_authors.push({
@@ -23,7 +63,7 @@ module StorageData
     File.write('./data/authors.json', JSON.generate(saved_authors).to_s)
   end
 
-  def save_musics(musics)
+  def self.save_musics(musics)
     mq = []
     musics.each do |music|
       mq.push({
@@ -34,16 +74,16 @@ module StorageData
                 music_author_secname: music.author.last_name
               })
     end
-    File.write('./musicAlbum/data/musics.json', JSON.generate(mq).to_s)
+    File.write('./data/musics.json', JSON.generate(mq).to_s)
   end
 
-  def save_genres(genres)
+  def self.save_genres(genres)
     gen = []
     genres.each do |genre|
       gen.push({
                  name: genre.name
                })
     end
-    File.write('./musicAlbum/data/genres.json', JSON.generate(gen).to_s)
+    File.write('./data/genres.json', JSON.generate(gen).to_s)
   end
 end
