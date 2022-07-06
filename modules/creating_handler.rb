@@ -26,7 +26,14 @@ module CreatingHandler
 
     puts 'Add a label to the book'
     label = create_label
+    puts 'Add a genre to the book'
+    genre = create_genre
+    puts 'Add an author to the book'
+    author = create_author
+
     book.add_label(label)
+    book.add_genre(genre)
+    book.add_author(author)
     @app.add_book(book)
     puts 'Book created successfully!'
   end
@@ -38,6 +45,7 @@ module CreatingHandler
     color = gets.chomp
     label = Label.new(title, color)
     @app.add_label(label)
+    puts 'Label added successfully!'
     label
   end
 
@@ -59,6 +67,16 @@ module CreatingHandler
       publish_date = gets.chomp
     end
     game = Game.new(multiplayer, last_played_at, publish_date)
+    puts 'Add a label to the game'
+    label = create_label
+    puts 'Add a genre to the game'
+    genre = create_genre
+    puts 'Add an author to the game'
+    author = create_author
+
+    game.add_label(label)
+    game.add_genre(genre)
+    game.add_author(author)
     @app.add_game(game)
     p 'Game created successfully'
   end
@@ -70,7 +88,8 @@ module CreatingHandler
     last_name = gets.chomp
     author = Author.new(first_name, last_name)
     @app.add_author(author)
-    p 'Author created successfully'
+    p 'Author added successfully'
+    author
   end
 
   def self.create_genre
@@ -79,6 +98,7 @@ module CreatingHandler
     genre = Genre.new(name)
     @app.add_genre(genre)
     puts 'Genre added successfully!'
+    genre
   end
 
   def self.create_music
