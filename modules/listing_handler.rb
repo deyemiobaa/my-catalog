@@ -32,11 +32,14 @@ Author: #{book.author.first_name} #{book.author.last_name}"
 
   def self.list_games
     @app.games.each_with_index do |game, index|
-      puts"#{index}) Multiplayer: #{game.multiplayer}, Last played date: #{game.last_played_at}, Publish date: #{game.publish_date}"
+      puts "#{index}) Multiplayer: #{game.multiplayer}, Last played date: #{game.last_played_at},\
+  Publish date: #{game.publish_date}"
+    end
   end
 
   def list_authors
     @app.authors.each_with_index do |author, index|
       puts "#{index}) First name: #{author.first_name}, Last name: #{author.last_name}, ID:#{author.id}"
+    end
   end
 end

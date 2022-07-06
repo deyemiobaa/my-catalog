@@ -1,4 +1,5 @@
 require_relative '../modules/date_handler'
+require_relative '../modules/validate_state'
 require_relative '../classes/book'
 require_relative '../classes/label'
 require_relative './app'
@@ -7,6 +8,7 @@ require_relative '../classes/author'
 
 module CreatingHandler
   include DateHandler
+  include ValidateState
 
   @app = App.new
   def self.create_book
@@ -69,6 +71,37 @@ module CreatingHandler
     author = Author.new(first_name, last_name)
     @app.add_author(author)
     p 'Author created successfully'
+  end
+
+  def self.create_genre
+    puts 'Enter the name of the genre: '
+    name = gets.chomp
+    genre = Genre.new(name)
+    @app.add_genre(genre)
+    puts 'Genre added successfully!'
+  end
+
+  def self.create_music
+    puts 'Let\'s create the music!'
+    print 'When was your music published (YYYY-MM-DD)? '
+    date = gets.chomp
+    date_of_music_publish = DateHandler.from_string(date)
+    print 'Is your music on spotify? (yes/no) '
+    is_on_spotify = gets.chomp
+    spotify_state = ValidateState.check_spotify_state(is_on_spotify)
+    print 'What is the music Genre?: '
+    music_genre = gets.chomp
+    genre = Genre.new(music_genre)
+    print 'Who is the music author first name? '
+    music_author_fname = gets.chomp
+    print 'Who is the music author second name? '
+    music_author_secname = gets.chomp
+    author = Author.new(music_author_fname, music_author_secname)
+    music = MusicAlbum.new(spotify_state, date_of_music_publish)
+    music.add_genre(genre)
+    music.add_author(author)
+    @app.add_music(music)
+    puts 'Your music was added succesfully!'
   end
 end
 
