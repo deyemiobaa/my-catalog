@@ -2,8 +2,8 @@ require 'json'
 
 module StorageData
   def self.create_file
-    filename = %w[./data/games.json ./data/authors.json ./data/books.json 
-      ./data/labels.json ./data/genres.json ./data/musics.json]
+    filename = %w[./data/games.json ./data/authors.json ./data/books.json
+                  ./data/labels.json ./data/genres.json ./data/musics.json]
     filename.each { |file| File.new(file, 'w+') unless File.exist?(file) }
   end
 
@@ -21,10 +21,10 @@ module StorageData
         publish_date: book.publish_date,
         label: book.label.to_json,
         genre: book.genre.to_json,
-        author: book.author.to_json,
+        author: book.author.to_json
       }
     end
-    json_data = JSON.generate(rentals_data)
+    json_data = JSON.generate(books_data)
     File.write('./data/books.json', json_data)
   end
 

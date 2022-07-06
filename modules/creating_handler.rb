@@ -14,23 +14,18 @@ module CreatingHandler
   def self.create_book
     puts 'Enter book publisher:'
     publisher = gets.chomp
-    puts 'Enter book cover state:'
+    puts 'Enter book cover state (good/bad):'
     cover_state = gets.chomp
     puts 'Enter book publish date:(yyyy-mm-dd)'
     publish_date = gets.chomp
     until DateHandler.validate_date(publish_date)
-      puts 'Invalid date format. Try again:'
+      puts 'Invalid date format. Try again: (yyyy-mm-dd)'
       publish_date = gets.chomp
     end
     book = Book.new(publisher, cover_state, publish_date)
-
-    puts 'Add a label to the book'
     label = create_label
-    puts 'Add a genre to the book'
     genre = create_genre
-    puts 'Add an author to the book'
     author = create_author
-
     book.add_label(label)
     book.add_genre(genre)
     book.add_author(author)
@@ -39,6 +34,7 @@ module CreatingHandler
   end
 
   def self.create_label
+    puts 'Add a new label for your item'
     puts 'Enter label title:'
     title = gets.chomp
     puts 'Enter label color:'
@@ -52,14 +48,12 @@ module CreatingHandler
   def self.create_game
     puts 'Enter game multiplayer'
     multiplayer = gets.chomp.to_s
-
     puts 'Enter the date the game was last played: YYYY-MM-DD'
     last_played_at = gets.chomp
     until DateHandler.validate_date(last_played_at)
       puts 'Invalid date format. Try again: YYYY-MM-DD'
       last_played_at = gets.chomp
     end
-
     puts 'Enter the publish date of the game: YYYY-MM-DD'
     publish_date = gets.chomp
     until DateHandler.validate_date(publish_date)
@@ -67,13 +61,9 @@ module CreatingHandler
       publish_date = gets.chomp
     end
     game = Game.new(multiplayer, last_played_at, publish_date)
-    puts 'Add a label to the game'
     label = create_label
-    puts 'Add a genre to the game'
     genre = create_genre
-    puts 'Add an author to the game'
     author = create_author
-
     game.add_label(label)
     game.add_genre(genre)
     game.add_author(author)
@@ -82,6 +72,7 @@ module CreatingHandler
   end
 
   def self.create_author
+    puts 'Add a new author for your item'
     puts 'Enter first name:'
     first_name = gets.chomp
     puts 'Enter last name:'
@@ -93,6 +84,7 @@ module CreatingHandler
   end
 
   def self.create_genre
+    puts 'Add a new genre for your item'
     puts 'Enter the name of the genre: '
     name = gets.chomp
     genre = Genre.new(name)
@@ -124,5 +116,3 @@ module CreatingHandler
     puts 'Your music was added succesfully!'
   end
 end
-
-CreatingHandler.create_game
