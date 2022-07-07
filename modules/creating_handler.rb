@@ -1,10 +1,11 @@
-require_relative '../modules/date_handler'
-require_relative '../modules/validate_state'
 require_relative '../classes/book'
 require_relative '../classes/label'
-require_relative './app'
 require_relative '../classes/game'
 require_relative '../classes/author'
+require_relative '../classes/genre'
+require_relative '../modules/date_handler'
+require_relative '../modules/validate_state'
+require_relative './app'
 
 module CreatingHandler
   include DateHandler
@@ -23,12 +24,7 @@ module CreatingHandler
       publish_date = gets.chomp
     end
     book = Book.new(publisher, cover_state, publish_date)
-    label = create_label
-    genre = create_genre
-    author = create_author
-    book.add_label(label)
-    book.add_genre(genre)
-    book.add_author(author)
+    add_label_author_genre_to_item(book)
     @app.add_book(book)
     puts 'Book created successfully!'
   end
@@ -61,12 +57,7 @@ module CreatingHandler
       publish_date = gets.chomp
     end
     game = Game.new(multiplayer, last_played_at, publish_date)
-    label = create_label
-    genre = create_genre
-    author = create_author
-    game.add_label(label)
-    game.add_genre(genre)
-    game.add_author(author)
+    add_label_author_genre_to_item(game)
     @app.add_game(game)
     p 'Game created successfully'
   end
@@ -89,30 +80,30 @@ module CreatingHandler
     name = gets.chomp
     genre = Genre.new(name)
     @app.add_genre(genre)
-    puts 'Genre added successfully!'
+    p 'Genre added successfully!'
     genre
   end
 
   def self.create_music
     puts 'Let\'s create the music!'
-    print 'When was your music published (YYYY-MM-DD)? '
+    puts 'When was your music published (YYYY-MM-DD)? '
     date = gets.chomp
     date_of_music_publish = DateHandler.from_string(date)
-    print 'Is your music on spotify? (yes/no) '
+    puts 'Is your music on spotify? (yes/no) '
     is_on_spotify = gets.chomp
     spotify_state = ValidateState.check_spotify_state(is_on_spotify)
-    print 'What is the music Genre?: '
-    music_genre = gets.chomp
-    genre = Genre.new(music_genre)
-    print 'Who is the music author first name? '
-    music_author_fname = gets.chomp
-    print 'Who is the music author second name? '
-    music_author_secname = gets.chomp
-    author = Author.new(music_author_fname, music_author_secname)
     music = MusicAlbum.new(spotify_state, date_of_music_publish)
-    music.add_genre(genre)
-    music.add_author(author)
+    add_label_author_genre_to_item(music)
     @app.add_music(music)
-    puts 'Your music was added succesfully!'
+    p 'Your music was added succesfully!'
+  end
+
+  def self.add_label_author_genre_to_item(item)
+    label = create_label
+    author = create_author
+    genre = create_genre
+    item.add_label(label)
+    item.add_author(author)
+    item.add_genre(genre)
   end
 end
