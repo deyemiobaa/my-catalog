@@ -7,10 +7,9 @@ module StorageData
     filename.each { |file| File.new(file, 'w+') unless File.exist?(file) }
   end
 
-  def self.save_data(app)
-    create_file
-    save_books(app)
-    save_labels(app)
+  def self.save_data(games, authors)
+    save_games(games)
+    save_authors(authors)
   end
 
   def self.save_books(app)
@@ -48,7 +47,7 @@ module StorageData
                          last_played_at: game.last_played_at
                        })
     end
-    File.write('./data/books.json', JSON.generate(saved_games).to_s)
+    File.write('./data/games.json', JSON.generate(saved_games))
   end
 
   def self.save_authors(authors)
@@ -56,11 +55,10 @@ module StorageData
     authors.each do |author|
       saved_authors.push({
                            first_name: author.first_name,
-                           last_name: author.last_name,
-                           id: author.id
+                           last_name: author.last_name
                          })
     end
-    File.write('./data/authors.json', JSON.generate(saved_authors).to_s)
+    File.write('./data/authors.json', JSON.generate(saved_authors))
   end
 
   def self.save_musics(musics)

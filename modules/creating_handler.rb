@@ -7,11 +7,34 @@ require_relative '../modules/date_handler'
 require_relative '../modules/validate_state'
 require_relative './app'
 
+def create_game
+  puts 'Enter game multiplayer'
+  multiplayer = gets.chomp.to_s
+  puts 'Enter the date the game was last played: YYYY-MM-DD'
+  last_played_at = gets.chomp
+  until DateHandler.validate_date(last_played_at)
+    puts 'Invalid date format. Try again: YYYY-MM-DD'
+    last_played_at = gets.chomp
+  end
+  puts 'Enter the publish date of the game: YYYY-MM-DD'
+  publish_date = gets.chomp
+  until DateHandler.validate_date(publish_date)
+    puts 'Invalid date format. Try again: YYYY-MM-DD'
+    publish_date = gets.chomp
+  end
+  game = Game.new(multiplayer, last_played_at, publish_date)
+  @app.games << game
+  @app.games.each_with_index do |game, index|
+    puts "#{index}) Multiplayer: #{game.multiplayer}, Last played date: #{game.last_played_at},\
+  Publish date: #{game.publish_date}"
+  end
+  p 'Game created successfully'
+end
+
 module CreatingHandler
   include DateHandler
   include ValidateState
 
-  @app = App.new
   def self.create_book
     puts 'Enter book publisher:'
     publisher = gets.chomp
@@ -41,26 +64,7 @@ module CreatingHandler
     label
   end
 
-  def self.create_game
-    puts 'Enter game multiplayer'
-    multiplayer = gets.chomp.to_s
-    puts 'Enter the date the game was last played: YYYY-MM-DD'
-    last_played_at = gets.chomp
-    until DateHandler.validate_date(last_played_at)
-      puts 'Invalid date format. Try again: YYYY-MM-DD'
-      last_played_at = gets.chomp
-    end
-    puts 'Enter the publish date of the game: YYYY-MM-DD'
-    publish_date = gets.chomp
-    until DateHandler.validate_date(publish_date)
-      puts 'Invalid date format. Try again: YYYY-MM-DD'
-      publish_date = gets.chomp
-    end
-    game = Game.new(multiplayer, last_played_at, publish_date)
-    add_label_author_genre_to_item(game)
-    @app.add_game(game)
-    p 'Game created successfully'
-  end
+ 
 
   def self.create_author
     puts 'Add a new author for your item'
@@ -105,5 +109,14 @@ module CreatingHandler
     item.add_label(label)
     item.add_author(author)
     item.add_genre(genre)
+  end
+
+  def self.create_items(number)
+    case number
+    when 1
+      create_game
+    when 2
+      create_author
+    end
   end
 end

@@ -1,8 +1,15 @@
 require_relative './app'
 
-@app = App.new
+def list_games
+  @app.games.each_with_index do |game, index|
+    puts "#{index}) Multiplayer: #{game.multiplayer}, Last played date: #{game.last_played_at},\
+Publish date: #{game.publish_date}"
+  end
+end
 
 module ListingHandler
+  @app = App.new
+
   def self.list_books
     @app.books.each_with_index do |book, index|
       puts "- #{index}) Title: #{book.label.title} Publisher: #{book.publisher}\
@@ -30,16 +37,20 @@ Author: #{book.author.first_name} #{book.author.last_name}"
     end
   end
 
-  def self.list_games
-    @app.games.each_with_index do |game, index|
-      puts "#{index}) Multiplayer: #{game.multiplayer}, Last played date: #{game.last_played_at},\
-  Publish date: #{game.publish_date}"
+
+
+  def self.list_authors
+    @app.authors.each_with_index do |author, index|
+      puts "#{index}) First name: #{author.first_name}, Last name: #{author.last_name}, ID:#{author.id}"
     end
   end
 
-  def list_authors
-    @app.authors.each_with_index do |author, index|
-      puts "#{index}) First name: #{author.first_name}, Last name: #{author.last_name}, ID:#{author.id}"
+  def self.list_items(number)
+    case number
+    when 3
+      list_games
+    when 4
+      list_authors
     end
   end
 end

@@ -1,13 +1,28 @@
+require_relative './loading_handler'
+
 class App
   attr_accessor :books, :labels, :musics, :games, :authors
+
+  include LoadDataHandler
 
   def initialize
     @books = []
     @labels = []
     @musics = []
     @genres = []
-    @games = []
-    @authors = []
+    @games = load_games
+    @authors = load_authors
+  end
+
+  def entry
+    puts "\nPlease select an option by entering a number"
+    puts "\n\n"
+    puts "1 - Create a game
+    \r2 - Create an author
+    \r3 - List all games
+    \r4 - List all authors
+    \r5 - Exit"
+    puts "\n"
   end
 
   def add_book(book)

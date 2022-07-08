@@ -1,10 +1,12 @@
 require 'json'
 require_relative '../classes/label'
+require_relative '../classes/game'
 
 module LoadDataHandler
   def self.load_data(app)
     load_labels(app)
     load_books(app)
+    load_authors(app)
   end
 
   def self.load_labels(app)
@@ -32,5 +34,39 @@ module LoadDataHandler
       book.author = Author.from_json(data['author'])
       app.add_book(book)
     end
+  end
+
+  def load_games
+    games = []
+    if File.exist?('./data/games.json')
+      if File.empty?('./data/games.json')
+        File.write('./data/games.json', [])
+      else
+        loaded_games = JSON.parse(File.read('./data/games.json'))
+        loaded_games.each do |game|
+          games << Game.new(game['multiplayer'], game['publish_date'], game['last_played_at'])
+        end
+      end
+    else
+      File.write('./data/games.json', [])
+    end
+    games
+  end
+
+  def load_authors
+    authors = []
+    if File.exist?('./data/authors.json')
+      if File.empty?('./data/authors.json')
+        File.write('./data/authors.json', [])
+      else
+        loaded_authors = JSON.parse(File.read('./data/authors.json'))
+        loaded_authors.each do |_game|
+          authors << Author.new(author['first_name'], author['last_name'])
+        end
+      end
+    else
+      File.write('./data/authors.json', [])
+    end
+    authors
   end
 end

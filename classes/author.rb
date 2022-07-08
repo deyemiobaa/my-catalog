@@ -13,4 +13,16 @@ class Author
     @items << item
     item.author = self
   end
+
+  def to_json(*_args)
+    {
+      first_name: @first_name,
+      last_name: @last_name
+    }.to_json
+  end
+
+  def self.from_json(string)
+    data = JSON.parse(string)
+    new(data['First name'], data['Last name'])
+  end
 end
