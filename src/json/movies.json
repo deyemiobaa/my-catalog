@@ -1,0 +1,16 @@
+[
+  {
+    "movie_name": "Spiderman",
+    "movie_genre": "Sci-Fi",
+    "silent": false,
+    "publish_date": "2004-02-21",
+    "movie_source": "Online Shop"
+  },
+  {
+    "movie_name": "Batman",
+    "movie_genre": "Sci-Fi",
+    "silent": true,
+    "publish_date": "2005-08-26",
+    "movie_source": "From a Friend"
+  }
+]
