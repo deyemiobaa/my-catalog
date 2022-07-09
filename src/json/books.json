@@ -1,0 +1,18 @@
+[
+  {
+    "publish_date": "2011-11-11",
+    "author": "Carlo Collodi",
+    "publisher": "Macmillan",
+    "cover_state": "Good",
+    "color": "Green",
+    "label": "Gift"
+  },
+  {
+    "publish_date": "2019-05-02",
+    "author": "Oracle",
+    "publisher": "Pearson",
+    "cover_state": "Good",
+    "color": "Red",
+    "label": "New"
+  }
+]
