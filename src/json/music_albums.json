@@ -1,0 +1,74 @@
+[
+  {
+    "publish_date": "2012-12-12",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "50 Cent"
+  },
+  {
+    "publish_date": "2000-04-12",
+    "on_spotify": false,
+    "genre": "Rap",
+    "author": "2Pac"
+  },
+  {
+    "publish_date": "2017-12-21",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Hopsin"
+  },
+  {
+    "publish_date": "2022-07-07",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Drake"
+  },
+  {
+    "publish_date": "2007-10-05",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Eminem"
+  },
+  {
+    "publish_date": "2012-04-23",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Future"
+  },
+  {
+    "publish_date": "2019-12-04",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Narcos"
+  },
+  {
+    "publish_date": "2022-07-23",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Kanye West"
+  },
+  {
+    "publish_date": "2018-06-03",
+    "on_spotify": true,
+    "genre": "Rap",
+    "author": "Niska"
+  },
+  {
+    "publish_date": "2021-11-11",
+    "on_spotify": false,
+    "genre": "Pop",
+    "author": "James Arthur"
+  },
+  {
+    "publish_date": "2011-11-11",
+    "on_spotify": false,
+    "genre": "Pop",
+    "author": "JONY"
+  },
+  {
+    "publish_date": "2004-06-03",
+    "on_spotify": true,
+    "genre": "Pop",
+    "author": "Selena Gomez"
+  }
+]
